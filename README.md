@@ -90,7 +90,7 @@ CONFIG = {
 
 
 if __name__ == '__main__':
-    settings = Settings(CONFIG)
+    settings = Settings(DEFAULT, CONFIG)
     print 'port', settings.port
     print 'use_strict', settings.use_strict
     print 'DONE'
