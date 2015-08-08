@@ -33,11 +33,11 @@ FILE = {
 ck = ConsulKey('127.0.0.1')
 CONSUL = {
     # Let's  key from the 'mine' section.
-    'my_port': (ck.Int, ''cluster/mine/ports/best'),
+    'my_port': (ck.Int, 'cluster/mine/ports/best'),
 
     # Let's get this value from the Consl REST API and cast it
     # to an int.
-    'your_port': (ck.Int, ''cluster/yours/ports/default'),
+    'your_port': (ck.Int, 'cluster/yours/ports/default'),
 }
 
 #### Now we'll load all the settings and merge in the
@@ -46,5 +46,5 @@ CONSUL = {
 #### CONSUL settings override FILE settings.
 settings = Settings(DEFAULT, FILE, CONSUL)
 
-assert settings.my_port == 988998  # Was set from Consul
+assert settings.my_port == 9999  # Was set from Consul
 assert isintance(settings.my_port, int) is True
