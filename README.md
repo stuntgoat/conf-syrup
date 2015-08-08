@@ -88,7 +88,6 @@ CONFIG = {
     'use_strict': (Bool, False),
 }
 
-
 if __name__ == '__main__':
     settings = Settings(DEFAULT, CONFIG)
     print 'port', settings.port
