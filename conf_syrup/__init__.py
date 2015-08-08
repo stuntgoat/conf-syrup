@@ -1,5 +1,5 @@
 from .consul import ConsulKey
-from .bool_type import Bool
+from .bool_types import Bool
 from .exceptions import InvalidOption
 from .network_type import NetworkFromPrefix
 from .ini_paths import INI_SectionKey

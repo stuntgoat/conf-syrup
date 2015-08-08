@@ -3,7 +3,7 @@ import json
 from base64 import b64decode
 from urllib2 import HTTPError, urlopen
 
-from conf_syrup.bool_type import Bool
+from conf_syrup.bool_types import Bool
 from conf_syrup.network_type import NetworkFromPrefix
 
 logging.basicConfig(level=logging.INFO)

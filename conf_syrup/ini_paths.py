@@ -2,7 +2,7 @@ import logging
 from ConfigParser import ConfigParser
 from os.path import abspath
 
-from conf_syrup.bool_type import Bool
+from conf_syrup.bool_types import Bool
 from conf_syrup.network_type import NetworkFromPrefix
 
 CONF_PARSERS = {}
