@@ -3,6 +3,7 @@ from .bool_types import Bool
 from .exceptions import InvalidOption
 from .network_type import NetworkFromPrefix
 from .ini_paths import INI_SectionKey
+from .settings import Settings
 
 from .other_types import (
     LogLEVEL,
@@ -16,5 +17,6 @@ __all__ = [
     'InvalidOption',
     'NetworkFromPrefix',
     'LogLEVEL',
+    'Settings',
     'ValFromFile',
 ]
