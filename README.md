@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
 Environment variables override all other configs.
 
-```shell
+```bash
 $ python example.py
 port 8080
 use_strict False
