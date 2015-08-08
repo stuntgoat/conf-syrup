@@ -104,7 +104,7 @@ port 8080
 use_strict False
 DONE
 $ use_strict=yes port=9999 python example.py
-port 8080
+port 9999
 use_strict True
 DONE
 $
