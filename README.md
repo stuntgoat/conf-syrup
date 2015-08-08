@@ -50,9 +50,10 @@ assert settings.my_truth is True
 #### Let's get settings from the Consul REST API running on localhost.
 ck = ConsulKey('127.0.0.1')
 CONSUL = {
+    'my_port': (ck.Int, 'cluster/mine/ports/default'),
 
     # Let's get this value from the Consl REST API and cast it to an int.
-    'your_port': (ck.Int, 'cluster/yours/ports/default'),
+    'your_truth': (ck.Bool, 'cluster/yours/booleans/default'),
 }
 
 #### Now we'll load all the settings and merge in the
