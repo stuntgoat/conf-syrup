@@ -31,8 +31,8 @@ assert settings.my_truth = False
 #### Let's get some settings from an INI file.
 ini = INI_SectionKey('/etc/port_stuff.ini')
 FILE = {
-    # Let's get truth from 'mine' section and the 'truth_exists' key; casted to Python bool.
-    'my_truth': (ini.MkBool(my service'), 'truth_exists'),
+    # Let's get 'truth_exists' key from 'mine' section and cast to a bool.
+    'my_truth': (ini.MkBool('my service'), 'truth_exists'),
 
     # Let's get the 'port' key from the 'yours' section casted to an int.
     'your_port': (ini.MkInt('your service'), 'lowest_port'),
