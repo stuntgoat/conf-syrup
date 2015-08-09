@@ -26,9 +26,21 @@ assert settings.my_truth = False
 
 ## `INI File Key for Section Example`
 
-```python
+Here's an example INI file that we'll read from.
 
-#### Let's get some settings from an INI file.
+```ini
+[my service]
+truth_exists = yes
+has_hats = no
+
+[your service]
+truth_exists = yes
+lowest_port = 80
+```
+
+The `conf-syrup` code example:
+
+``` python
 ini = INI_SectionKey('/etc/port_stuff.ini')
 FILE = {
     # Let's get 'truth_exists' key from 'mine' section and cast to a bool.
