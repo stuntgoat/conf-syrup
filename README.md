@@ -43,10 +43,10 @@ The `conf-syrup` code example:
 ``` python
 ini = INI_SectionKey('/etc/port_stuff.ini')
 FILE = {
-    # Let's get 'truth_exists' key from 'mine' section and cast to a bool.
+    # Let's get 'truth_exists' key from 'my service' section and cast to a bool.
     'my_truth': (ini.MkBool('my service'), 'truth_exists'),
 
-    # Let's get the 'port' key from the 'yours' section casted to an int.
+    # Let's get the 'port' key from the 'your service' section casted to an int.
     'your_port': (ini.MkInt('your service'), 'lowest_port'),
 }
 
