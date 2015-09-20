@@ -9,3 +9,7 @@ class InvalidOption(ConfSyrupException):
 
 class UnableToLoadSettings(ConfSyrupException):
     pass
+
+
+class ConflictingTypes(ConfSyrupException):
+    pass

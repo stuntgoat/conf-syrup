@@ -1,12 +1,13 @@
-import os
-
+from mock import patch
 from pytest import raises
 
 from conf_syrup.settings import Settings, InvalidOption
 from conf_syrup.bool_types import Bool
+from conf_syrup.exceptions import ConflictingTypes
 
 
 class TestSettings(object):
+
     def test_load_settings(self):
         FIRST = {
             'hi': 1,
@@ -67,13 +68,15 @@ class TestSettings(object):
             'two': (float, 0),
         }
 
-        os.environ.update(mock_env)
-        settings = Settings(with_types)
-        assert settings.is_good is False
-        assert settings.one == 11
-        assert settings.two == 3.1
+        with patch('conf_syrup.settings.os') as pos:
+            pos.environ = mock_env
+            settings = Settings(with_types)
+            assert settings.is_good is False
+            assert settings.one == 11
+            assert settings.two == 3.1
 
     def test_settings_environ_not_added(self):
+
         # Inject into the environment.
         mock_env = {
             'here': 'yes',
@@ -84,8 +87,48 @@ class TestSettings(object):
             'here': (Bool, False),
         }
 
-        os.environ.update(mock_env)
-        settings = Settings(with_types)
-        assert settings.here is True
-        with raises(InvalidOption):
-            assert settings.not_here
+        with patch('conf_syrup.settings.os') as pos:
+            pos.environ = mock_env
+            settings = Settings(with_types)
+            assert settings.here is True
+            with raises(InvalidOption):
+                assert settings.not_here
+
+    def test_settings_inheritable_cast(self):
+
+        with_types = {
+            'is_good': (Bool, 'no'),
+            'one': (int, 0),
+            'two': (float, 0),
+        }
+
+        without_types = {
+            'is_good': 'yes',
+            'one': '1',
+            'two': '4.3',
+        }
+        with patch('conf_syrup.settings.os') as pos:
+            pos.environ = {}
+            settings = Settings(with_types, without_types)
+
+            assert settings.is_good is True
+            assert settings.one == 1
+            assert settings.two == 4.3
+
+    def test_settings_inheritable_cast_conflict(self):
+
+        with_types = {
+            'one': (int, 0),
+        }
+
+        without_types = {
+            'one': (float, 0.2),
+        }
+
+        with raises(ConflictingTypes):
+            settings = Settings(with_types, without_types)
+
+        with patch('conf_syrup.settings.os') as pos:
+            pos.environ = {}
+            settings = Settings(with_types, without_types, strict_types=False)
+            assert settings.one == .2
