@@ -1,5 +1,10 @@
 import logging
 
+from conf_syrup.exceptions import IOErrorWhileReading
+
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger('conf_syrup.other_types')
+
 
 def LogLEVEL(val):
     """
@@ -13,10 +18,24 @@ def LogLEVEL(val):
     return val
 
 
-def ValFromFile(val):
+def ValFromFile(val, throw=True):
     """
-    Read a single value from a file.
+    Read the contents from a file.
 
+    Usually, this will be a single value on the first line.
+
+    If `throw`, we raise a FileNotFound
     """
-    f = open(val, 'r')
+    try:
+        f = open(val, 'r')
+    except IOError as e:
+        LOGGER.error(str(e))
+        if throw:
+            raise IOErrorWhileReading(str(e))
+        LOGGER.info('unable to open %s for reading; returning an empty string')
+        return ''
     return f.read().strip()
+
+
+def SafeValFromFile(val):
+    return ValFromFile(val, throw=False)

@@ -12,7 +12,7 @@ def _to_number(val):
             return i
         return f
     except Exception as e:
-        LOGGER.info('failed to convert %s to valber: %s' % (val, e))
+        LOGGER.exception('failed to convert %s to val: %s' % (val, e))
 
 
 def _cast_num_to_bool(num, neg_val_false=True):

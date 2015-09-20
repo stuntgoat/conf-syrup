@@ -8,6 +8,7 @@ from .settings import Settings
 from .other_types import (
     LogLEVEL,
     ValFromFile,
+    SafeValFromFile,
 )
 
 __all__ = [
@@ -18,5 +19,7 @@ __all__ = [
     'NetworkFromPrefix',
     'LogLEVEL',
     'Settings',
+
     'ValFromFile',
+    'SafeValFromFile',
 ]

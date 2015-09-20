@@ -13,3 +13,7 @@ class UnableToLoadSettings(ConfSyrupException):
 
 class ConflictingTypes(ConfSyrupException):
     pass
+
+
+class IOErrorWhileReading(ConfSyrupException):
+    pass
