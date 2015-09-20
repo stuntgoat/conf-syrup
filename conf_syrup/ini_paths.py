@@ -4,6 +4,7 @@ from os.path import abspath
 
 from conf_syrup.bool_types import Bool
 from conf_syrup.network_type import NetworkFromPrefix
+from conf_syrup.other_types import LogLEVEL
 
 CONF_PARSERS = {}
 
@@ -49,3 +50,6 @@ class INI_SectionKey(object):
 
     def MkBool(self, section):
         return lambda x: Bool(self.value_for_section_key(section)(x))
+
+    def MkLogLEVEL(self, section):
+        return lambda x: LogLEVEL(self.value_for_section_key(section)(x))

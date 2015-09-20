@@ -17,3 +17,7 @@ class ConflictingTypes(ConfSyrupException):
 
 class IOErrorWhileReading(ConfSyrupException):
     pass
+
+
+class CastError(ConfSyrupException):
+    pass

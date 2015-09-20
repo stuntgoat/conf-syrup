@@ -5,6 +5,7 @@ from urllib2 import HTTPError, urlopen
 
 from conf_syrup.bool_types import Bool
 from conf_syrup.network_type import NetworkFromPrefix
+from conf_syrup.other_types import LogLEVEL
 
 logging.basicConfig(level=logging.INFO)
 
@@ -51,3 +52,6 @@ class ConsulKey(object):
 
     def NetworkPrefix(self, key):
         return NetworkFromPrefix(self._make_call(key))
+
+    def LogLEVEL(self, key):
+        return LogLEVEL(self._make_call(key))

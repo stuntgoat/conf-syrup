@@ -1,5 +1,7 @@
 import logging
 
+from conf_syrup.exceptions import CastError
+
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger('conf_syrup.bool_type')
 
@@ -12,7 +14,9 @@ def _to_number(val):
             return i
         return f
     except Exception as e:
-        LOGGER.exception('failed to convert %s to val: %s' % (val, e))
+        msg = 'failed to convert %s to val: %s' % (val, e)
+        LOGGER.exception(msg)
+        raise CastError(msg)
 
 
 def _cast_num_to_bool(num, neg_val_false=True):
@@ -59,6 +63,8 @@ def BoolYamlNum(val):
 
 def Bool(val):
     """
+    Falsy types return None.
+
     Default Bool is a BoolYamlNum that returns False for negative numbers.
 
     """
@@ -66,6 +72,12 @@ def Bool(val):
         return True
     elif val is False:
         return False
+    if val is None:
+        return False
+
+    if not val:
+        return None
+
     result = BoolYamlNum(val)
     if result is not None:
         return result
